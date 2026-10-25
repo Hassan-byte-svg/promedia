@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { WorkspaceShell, type NavGroup } from '@/components/layout/WorkspaceShell'
+import { Button } from '@/components/ui/Button'
+import { TextField } from '@/components/ui/Input'
 import { useAuth } from '@/lib/auth'
+import { getSignedDownloadUrl, listDocuments, uploadDocument } from '@/lib/documentsApi'
 import { listCases, listInvoices } from '@/lib/servicesApi'
 import { formatPkr } from '@/data/catalog'
 import { ModulePlaceholder } from '@/pages/admin/AdminRoutes'
@@ -141,11 +144,85 @@ export function PortalInvoicesPage() {
 }
 
 export function PortalDocumentsPage() {
+  const { user } = useAuth()
+  const [rows, setRows] = useState<Awaited<ReturnType<typeof listDocuments>>>([])
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    void listDocuments().then(setRows)
+  }, [])
+
+  async function onUpload(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const fd = new FormData(e.currentTarget)
+    const file = fd.get('file')
+    if (!(file instanceof File) || !file.size) {
+      setError('Choose a file')
+      return
+    }
+    const res = await uploadDocument({
+      file,
+      title: String(fd.get('title') || file.name),
+      ownerFolder: user?.id ?? 'client',
+      client_id: user?.id ?? null,
+    })
+    if (!res.ok) {
+      setError(res.error)
+      return
+    }
+    e.currentTarget.reset()
+    setRows(await listDocuments())
+  }
+
   return (
-    <ModulePlaceholder
-      title="Documents"
-      body="Private Supabase Storage bucket `client-documents` is defined in migrations. Upload UI and signed URLs ship in the next document slice."
-    />
+    <>
+      <div className="page-title">
+        <div>
+          <h1>Your documents</h1>
+          <p className="muted">Uploads go to private storage; downloads use signed URLs.</p>
+        </div>
+      </div>
+      <form className="card stack" onSubmit={(ev) => void onUpload(ev)} style={{ marginBottom: '1rem' }}>
+        <TextField label="Title" name="title" />
+        <label className="field">
+          <span className="field-label">File</span>
+          <input className="field-control" type="file" name="file" required />
+        </label>
+        {error ? <div className="alert alert-danger">{error}</div> : null}
+        <Button type="submit">Upload</Button>
+      </form>
+      <div className="table-wrap">
+        <table className="data">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {(rows as { id: string; title: string; storage_path: string }[]).map((r) => (
+              <tr key={r.id}>
+                <td>{r.title}</td>
+                <td>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      void getSignedDownloadUrl(r.storage_path).then((res) => {
+                        if (!res.ok) setError(res.error)
+                        else window.open(res.url, '_blank', 'noopener,noreferrer')
+                      })
+                    }
+                  >
+                    Download
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }
 

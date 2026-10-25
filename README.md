@@ -1,60 +1,57 @@
 # TaxLegalPro (`promedia`)
 
-Public website, client portal, and admin ERP foundation for TaxLegalPro.
+Public website, client portal, and admin ERP for TaxLegalPro.
 
 **Stack:** Vite · React · TypeScript · React Router · Supabase (Auth, Postgres, Storage, RLS)
 
-**Live reference (legacy):** https://noman-website-xi.vercel.app/
+**Live reference (legacy):** https://noman-website-xi.vercel.app/  
+**PR:** https://github.com/Hassan-byte-svg/promedia/pull/1
 
 ## Quick start
 
 ```bash
 npm install
 cp .env.example .env   # add Supabase URL + anon key
+# Apply both SQL files in supabase/migrations/ (SQL editor or CLI)
 npm run dev
 ```
 
-Apply SQL in `supabase/migrations/` via the Supabase SQL editor or CLI before expecting auth/CRM data to persist.
-
 ```bash
+npm run test
 npm run build
 npm run preview
 ```
 
 ## Environment
 
-See `.env.example`. Never commit real secrets.
-
 | Variable | Purpose |
 | --- | --- |
 | `VITE_SUPABASE_URL` | Supabase project URL |
 | `VITE_SUPABASE_ANON_KEY` | Anon (public) key |
+| `VITE_APP_URL` | Canonical site origin (SEO / sitemap replacement) |
 
-Without these, the public UI still runs with a local catalog fallback; auth and writes show a clear setup message.
+Without Supabase env vars the public UI still runs (catalog fallback); auth and writes show clear errors. Admin/portal shells are previewable locally for design review; **RBAC is enforced when Supabase is configured**.
 
-## Deploy (Vercel)
+## Migrations
 
-`vercel.json` rewrites all routes to `index.html` so deep links work.
+1. `supabase/migrations/20261025100000_initial_schema.sql` — profiles, services, leads, cases, CoA/journals, invoices, HR base, tax profiles, storage bucket, RLS  
+2. `supabase/migrations/20261025220000_erp_modules.sql` — fiscal periods, banks, petty cash, payments/allocations, leave, payroll, tax filings/deadlines, documents, tasks/comments, notifications/automation, period-lock helper
 
-## Project docs
+## Modules
 
-Project store (coordinator):
+| Area | Status |
+| --- | --- |
+| Public site + SEO (`robots.txt`, `sitemap.xml`, meta) | Working |
+| CRM leads / cases / services | Working (Supabase) |
+| Journals (balanced post + period lock + idempotency) | Working |
+| Payments + allocation, banks, petty cash | Working |
+| HR attendance, leave, payroll (no duplicate post) | Working |
+| Tax filings workflow + deadlines (no fake FBR ack) | Working |
+| Documents (private bucket + signed URLs) | Working |
+| Tasks + comments + notifications | Working |
+| Reports / settings matrix UI | Stub |
+| Live Supabase credentials in this environment | **Blocked** — owner must supply |
 
-- `docs/project-audit.md` — Phase 1 audit
-- `docs/project-context.md` — mission, constraints, phases
+## Deploy
 
-## What works now
-
-- Public site: home, services, pricing, about, contact/consultation (lead form), FAQ, resources, legal stubs, auth pages
-- Design tokens + shared UI
-- Supabase schema + RLS stubs (profiles, services, leads, cases, CoA/journals, invoices, HR/attendance, tax profiles, audit logs, private storage bucket)
-- Admin shell (`/app`) with CRM leads, cases, services, finance CoA, invoices, tax, HR screens wired to Supabase
-- Client portal shell (`/portal`) with cases/invoices lists (RLS-scoped)
-
-## Still stubbed / next
-
-- Full double-entry posting UI, petty cash, payroll runs, attendance check-in
-- Document upload + signed URLs UI
-- Task board, reporting exports, automation/notifications
-- Finer RBAC matrix, MFA, password-reset email form
-- SEO sitemap/robots and counsel-reviewed legal copy
+`vercel.json` rewrites SPA routes to `index.html`. Set production env vars in Vercel; replace sitemap host with your domain.

@@ -29,6 +29,20 @@ import {
   ModulePlaceholder,
 } from '@/pages/admin/AdminRoutes'
 import {
+  BanksPage,
+  JournalsPage,
+  PaymentsPage,
+  PettyCashPage,
+} from '@/pages/admin/FinanceModules'
+import {
+  AttendancePage,
+  DocumentsPage,
+  NotificationsPage,
+  PayrollPage,
+  TasksPage,
+  TaxCompliancePage,
+} from '@/pages/admin/OpsModules'
+import {
   PortalCasesPage,
   PortalDashboard,
   PortalDocumentsPage,
@@ -36,11 +50,13 @@ import {
   PortalLayout,
   PortalSupportPage,
 } from '@/pages/portal/PortalRoutes'
+import { Seo } from '@/components/Seo'
 
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Seo />
         <Routes>
           <Route element={<PublicLayout />}>
             <Route index element={<HomePage />} />
@@ -73,59 +89,27 @@ export default function App() {
             <Route path="leads" element={<AdminLeadsPage />} />
             <Route path="cases" element={<AdminCasesPage />} />
             <Route path="services" element={<AdminServicesPage />} />
-            <Route
-              path="tasks"
-              element={
-                <ModulePlaceholder
-                  title="Tasks"
-                  body="Task board schema and automation hooks are planned for the CRM/ops phase."
-                />
-              }
-            />
+            <Route path="tasks" element={<TasksPage />} />
             <Route path="finance" element={<AdminFinancePage />} />
+            <Route path="journals" element={<JournalsPage />} />
+            <Route path="banks" element={<BanksPage />} />
+            <Route path="payments" element={<PaymentsPage />} />
             <Route path="invoices" element={<AdminInvoicesPage />} />
-            <Route
-              path="petty-cash"
-              element={
-                <ModulePlaceholder
-                  title="Petty cash"
-                  body="Petty cash accounts and entries will post through the double-entry ledger."
-                />
-              }
-            />
+            <Route path="petty-cash" element={<PettyCashPage />} />
             <Route path="tax" element={<AdminTaxPage />} />
+            <Route path="tax-compliance" element={<TaxCompliancePage />} />
             <Route path="hr" element={<AdminHrPage />} />
-            <Route
-              path="attendance"
-              element={
-                <ModulePlaceholder
-                  title="Attendance"
-                  body="attendance_records table exists. Check-in UI connects next."
-                />
-              }
-            />
-            <Route
-              path="payroll"
-              element={
-                <ModulePlaceholder
-                  title="Payroll"
-                  body="Payroll runs will post salary journals with approval gates — schema groundwork in progress."
-                />
-              }
-            />
-            <Route
-              path="documents"
-              element={
-                <ModulePlaceholder
-                  title="Documents"
-                  body="Private bucket client-documents + RLS policies are in migrations."
-                />
-              }
-            />
+            <Route path="attendance" element={<AttendancePage />} />
+            <Route path="payroll" element={<PayrollPage />} />
+            <Route path="documents" element={<DocumentsPage />} />
+            <Route path="notifications" element={<NotificationsPage />} />
             <Route
               path="reports"
               element={
-                <ModulePlaceholder title="Reports" body="Financial and ops reports come after journal posting." />
+                <ModulePlaceholder
+                  title="Reports"
+                  body="CSV/PDF financial exports will build on posted journals and invoice balances."
+                />
               }
             />
             <Route
@@ -133,7 +117,7 @@ export default function App() {
               element={
                 <ModulePlaceholder
                   title="Settings"
-                  body="Roles, permissions matrix, and workspace prefs land with RBAC hardening."
+                  body="Role matrix UI forthcoming. RLS + RequireAuth already enforce client vs staff."
                 />
               }
             />

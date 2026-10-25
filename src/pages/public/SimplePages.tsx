@@ -58,8 +58,11 @@ export function ConsultationPage() {
 export function FaqPage() {
   const faqs = [
     ['Do I need an account to browse services?', 'No. Public pages are open. An account is required for the client portal.'],
-    ['How are prices finalised?', 'Catalog prices are starting guides. Quotes reflect scope and filings.'],
-    ['Where are documents stored?', 'Client documents use private storage with signed access once Supabase is connected.'],
+    ['How are prices finalised?', 'Catalog prices are starting guides. Quotes reflect scope, filings, and government charges quoted separately.'],
+    ['Where are documents stored?', 'Client documents use a private Supabase Storage bucket with short-lived signed download URLs — never public permanent links.'],
+    ['What tax years do you support?', 'We track deadlines and filing cases per tax year. Acknowledgment is recorded only when you provide a real FBR reference.'],
+    ['Can staff see my portal data?', 'Yes, authorised staff can assist on your matters. Row Level Security keeps other clients from reading your records.'],
+    ['How do I book a consultation?', 'Use Book a Consultation or Contact — enquiries create CRM leads for the desk.'],
   ] as const
   return (
     <Page eyebrow="FAQ" title="Frequently asked questions">
@@ -97,12 +100,29 @@ export function ResourcesPage() {
 export function LegalPage({ kind }: { kind: 'privacy' | 'terms' | 'refund' }) {
   const title =
     kind === 'privacy' ? 'Privacy policy' : kind === 'terms' ? 'Terms of use' : 'Refund policy'
+  const body =
+    kind === 'privacy'
+      ? [
+          'TaxLegalPro processes account, service, and document data to deliver professional services.',
+          'Access is role-restricted. Client documents are stored privately and shared via signed links.',
+          'Contact hello@taxlegalpro.pk for data requests. Replace this stub with counsel-reviewed language before launch.',
+        ]
+      : kind === 'terms'
+        ? [
+            'Public site content is informational. Engagement letters and quotations govern paid work.',
+            'Government fees are separate from professional fees and are disclosed when known.',
+            'Replace this stub with counsel-reviewed terms before production launch.',
+          ]
+        : [
+            'Refund eligibility depends on the engagement letter and work already performed.',
+            'Government charges and third-party fees are generally non-refundable once paid.',
+            'Replace this stub with counsel-reviewed refund policy before launch.',
+          ]
   return (
     <Page eyebrow="Legal" title={title}>
-      <p>
-        This is a working policy stub for the TaxLegalPro platform. Replace with counsel-reviewed
-        text before production launch. We do not invent customer-facing legal claims.
-      </p>
+      {body.map((p) => (
+        <p key={p}>{p}</p>
+      ))}
     </Page>
   )
 }

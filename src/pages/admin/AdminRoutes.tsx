@@ -33,20 +33,26 @@ const adminNav: NavGroup[] = [
   {
     title: 'Money',
     items: [
-      { to: '/app/finance', label: 'Finance' },
+      { to: '/app/finance', label: 'Chart of accounts' },
+      { to: '/app/journals', label: 'Journals' },
+      { to: '/app/banks', label: 'Bank accounts' },
+      { to: '/app/payments', label: 'Payments' },
       { to: '/app/invoices', label: 'Invoices' },
       { to: '/app/petty-cash', label: 'Petty cash' },
     ],
   },
   {
     title: 'Tax & Compliance',
-    items: [{ to: '/app/tax', label: 'Tax profiles' }],
+    items: [
+      { to: '/app/tax', label: 'Tax profiles' },
+      { to: '/app/tax-compliance', label: 'Filings & calendar' },
+    ],
   },
   {
     title: 'People',
     items: [
       { to: '/app/hr', label: 'Employees' },
-      { to: '/app/attendance', label: 'Attendance' },
+      { to: '/app/attendance', label: 'Attendance & leave' },
       { to: '/app/payroll', label: 'Payroll' },
     ],
   },
@@ -54,6 +60,7 @@ const adminNav: NavGroup[] = [
     title: 'System',
     items: [
       { to: '/app/documents', label: 'Documents' },
+      { to: '/app/notifications', label: 'Notifications' },
       { to: '/app/reports', label: 'Reports' },
       { to: '/app/settings', label: 'Settings' },
     ],

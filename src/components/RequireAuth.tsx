@@ -8,7 +8,7 @@ export function RequireAuth({
   children: React.ReactNode
   staffOnly?: boolean
 }) {
-  const { user, loading, isStaff, configured } = useAuth()
+  const { user, loading, isStaff, configured, profile } = useAuth()
   const location = useLocation()
 
   if (loading) {
@@ -19,7 +19,8 @@ export function RequireAuth({
     )
   }
 
-  // Allow shell previews when Supabase is not wired yet (local/demo only).
+  // Local demo: shells visible without Supabase so UI can be reviewed.
+  // When configured, enforce Auth + RBAC strictly.
   if (!configured) {
     return children
   }
@@ -28,8 +29,18 @@ export function RequireAuth({
     return <Navigate to="/login" replace state={{ from: location }} />
   }
 
-  if (staffOnly && !isStaff) {
-    return <Navigate to="/portal" replace />
+  if (staffOnly) {
+    // Wait for profile when session exists — avoid flashing client into admin.
+    if (!profile) {
+      return (
+        <div className="container section">
+          <p>Checking permissions…</p>
+        </div>
+      )
+    }
+    if (!isStaff) {
+      return <Navigate to="/portal" replace />
+    }
   }
 
   return children
