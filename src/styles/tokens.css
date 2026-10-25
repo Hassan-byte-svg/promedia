@@ -1,0 +1,23 @@
+:root {
+  --navy: #0e1c33;
+  --navy-2: #162a4a;
+  --ink: #1a2332;
+  --muted: #5b6b7c;
+  --paper: #f4f7fb;
+  --paper-2: #e8eef6;
+  --surface: #ffffff;
+  --line: #d5dee9;
+  --brass: #c47a22;
+  --brass-2: #a86412;
+  --amber: #e8a23a;
+  --good: #1f7a4d;
+  --danger: #b42318;
+  --warn: #b54708;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 10px 30px rgba(14, 28, 51, 0.08);
+  --serif: "Bricolage Grotesque", Georgia, serif;
+  --sans: "Source Sans 3", "Segoe UI", sans-serif;
+  --header-h: 72px;
+  --max: 1120px;
+}
