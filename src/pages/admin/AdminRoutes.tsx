@@ -18,57 +18,55 @@ import { formatPkr } from '@/data/catalog'
 
 const adminNav: NavGroup[] = [
   {
-    title: 'Overview',
-    items: [{ to: '/app', label: 'Dashboard' }],
-  },
-  {
-    title: 'Work',
+    title: 'Finance',
     items: [
-      { to: '/app/leads', label: 'Leads / CRM' },
-      { to: '/app/cases', label: 'Service cases' },
-      { to: '/app/services', label: 'Services' },
-      { to: '/app/tasks', label: 'Tasks' },
+      { to: '/app', label: 'Dashboard', icon: '▣', end: true },
+      { to: '/app/invoices', label: 'Invoicing & Billing', icon: '▤' },
+      { to: '/app/expenses', label: 'Expenses & Vendor Bills', icon: '▥' },
+      { to: '/app/banks', label: 'Bank & Cash', icon: '🏦' },
+      { to: '/app/petty-cash', label: 'Petty cash', icon: '₵' },
+      { to: '/app/payments', label: 'Payments', icon: '⇄' },
+      { to: '/app/journals', label: 'Accounting & Ledger', icon: '☰' },
+      { to: '/app/finance', label: 'Chart of accounts', icon: '☷' },
+      { to: '/app/reports', label: 'Reports & Compliance', icon: '▥' },
     ],
   },
   {
-    title: 'Money',
+    title: 'People & tax',
     items: [
-      { to: '/app/finance', label: 'Chart of accounts' },
-      { to: '/app/journals', label: 'Journals' },
-      { to: '/app/banks', label: 'Bank accounts' },
-      { to: '/app/payments', label: 'Payments' },
-      { to: '/app/invoices', label: 'Invoices' },
-      { to: '/app/petty-cash', label: 'Petty cash' },
+      { to: '/app/payroll', label: 'Payroll Accounting', icon: '👥' },
+      { to: '/app/hr', label: 'HR Management', icon: '⌂' },
+      { to: '/app/attendance', label: 'Attendance & leave', icon: '◷' },
+      { to: '/app/assets', label: 'Fixed Assets', icon: '▦' },
+      { to: '/app/budgets', label: 'Budgets', icon: '▭' },
+      { to: '/app/tax-compliance', label: 'Tax Center', icon: '⚖' },
+      { to: '/app/tax', label: 'Tax profiles', icon: '◎' },
     ],
   },
   {
-    title: 'Tax & Compliance',
+    title: 'Practice',
     items: [
-      { to: '/app/tax', label: 'Tax profiles' },
-      { to: '/app/tax-compliance', label: 'Filings & calendar' },
-    ],
-  },
-  {
-    title: 'People',
-    items: [
-      { to: '/app/hr', label: 'Employees' },
-      { to: '/app/attendance', label: 'Attendance & leave' },
-      { to: '/app/payroll', label: 'Payroll' },
+      { to: '/app/leads', label: 'Leads / CRM', icon: '◉' },
+      { to: '/app/cases', label: 'Service cases', icon: '◻' },
+      { to: '/app/services', label: 'Services', icon: '◇' },
+      { to: '/app/tasks', label: 'Tasks', icon: '✓' },
+      { to: '/portal', label: 'Client portal', icon: '↗' },
     ],
   },
   {
     title: 'System',
     items: [
-      { to: '/app/documents', label: 'Documents' },
-      { to: '/app/notifications', label: 'Notifications' },
-      { to: '/app/reports', label: 'Reports' },
-      { to: '/app/settings', label: 'Settings' },
+      { to: '/app/documents', label: 'Documents', icon: '☰' },
+      { to: '/app/notifications', label: 'Notifications', icon: '◉' },
+      { to: '/app/settings', label: 'Settings', icon: '⚙' },
     ],
   },
 ]
 
 export function AdminLayout() {
-  return <WorkspaceShell title="Admin" homeTo="/app" groups={adminNav} />
+  return (
+    <WorkspaceShell title="Finance & operations" homeTo="/app" groups={adminNav} variant="finance" />
+  )
 }
 
 export function AdminDashboard() {

@@ -18,7 +18,6 @@ import {
 import { ForgotPasswordPage, LoginPage, RegisterPage } from '@/pages/auth/AuthPages'
 import {
   AdminCasesPage,
-  AdminDashboard,
   AdminFinancePage,
   AdminHrPage,
   AdminInvoicesPage,
@@ -28,12 +27,19 @@ import {
   AdminTaxPage,
   ModulePlaceholder,
 } from '@/pages/admin/AdminRoutes'
+import { FinanceDashboard } from '@/pages/admin/FinanceDashboard'
 import {
   BanksPage,
   JournalsPage,
   PaymentsPage,
   PettyCashPage,
 } from '@/pages/admin/FinanceModules'
+import {
+  BudgetsPage,
+  ExpensesPage,
+  FixedAssetsPage,
+  ReportsPage,
+} from '@/pages/admin/FinanceStubs'
 import {
   AttendancePage,
   DocumentsPage,
@@ -85,7 +91,7 @@ export default function App() {
               </RequireAuth>
             }
           >
-            <Route index element={<AdminDashboard />} />
+            <Route index element={<FinanceDashboard />} />
             <Route path="leads" element={<AdminLeadsPage />} />
             <Route path="cases" element={<AdminCasesPage />} />
             <Route path="services" element={<AdminServicesPage />} />
@@ -96,6 +102,9 @@ export default function App() {
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="invoices" element={<AdminInvoicesPage />} />
             <Route path="petty-cash" element={<PettyCashPage />} />
+            <Route path="expenses" element={<ExpensesPage />} />
+            <Route path="assets" element={<FixedAssetsPage />} />
+            <Route path="budgets" element={<BudgetsPage />} />
             <Route path="tax" element={<AdminTaxPage />} />
             <Route path="tax-compliance" element={<TaxCompliancePage />} />
             <Route path="hr" element={<AdminHrPage />} />
@@ -103,15 +112,7 @@ export default function App() {
             <Route path="payroll" element={<PayrollPage />} />
             <Route path="documents" element={<DocumentsPage />} />
             <Route path="notifications" element={<NotificationsPage />} />
-            <Route
-              path="reports"
-              element={
-                <ModulePlaceholder
-                  title="Reports"
-                  body="CSV/PDF financial exports will build on posted journals and invoice balances."
-                />
-              }
-            />
+            <Route path="reports" element={<ReportsPage />} />
             <Route
               path="settings"
               element={
