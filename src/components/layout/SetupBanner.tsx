@@ -4,9 +4,8 @@ export function SetupBanner() {
   if (isSupabaseConfigured) return null
   return (
     <div className="setup-banner" role="status">
-      Supabase env vars are not set. UI runs locally; auth and data APIs activate after you add{' '}
-      <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> (see <code>.env.example</code>
-      ) and apply <code>supabase/migrations</code>.
+      Local mode: add Supabase URL and anon key from .env.example, then apply migrations, to enable
+      auth and data APIs.
     </div>
   )
 }

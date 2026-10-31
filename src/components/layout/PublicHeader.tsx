@@ -1,25 +1,24 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { Button } from '@/components/ui/Button'
-import './public-layout.css'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 const links = [
   { to: '/services', label: 'Services' },
   { to: '/pricing', label: 'Pricing' },
-  { to: '/resources', label: 'Resources' },
-  { to: '/about', label: 'About Us' },
+  { to: '/about', label: 'About' },
+  { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ]
 
 export function PublicHeader() {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const dark = pathname === '/'
 
   return (
-    <header className="site-header">
-      <div className="container site-header-inner">
+    <header className={`site-header ${dark ? 'is-dark' : ''}`}>
+      <div className="site-header-inner">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden />
-          <span className="brand-text">TaxLegalPro</span>
+          TaxLegalPro
         </Link>
 
         <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Primary">
@@ -34,10 +33,8 @@ export function PublicHeader() {
           <Link to="/login" className="header-link" onClick={() => setOpen(false)}>
             Client Login
           </Link>
-          <Link to="/consultation" onClick={() => setOpen(false)}>
-            <Button size="sm" variant="secondary">
-              Book a Consultation
-            </Button>
+          <Link to="/consultation" className="header-cta" onClick={() => setOpen(false)}>
+            Book a consultation
           </Link>
           <button
             type="button"

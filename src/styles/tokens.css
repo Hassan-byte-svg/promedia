@@ -1,23 +1,53 @@
 :root {
-  --navy: #0e1c33;
-  --navy-2: #162a4a;
-  --ink: #1a2332;
-  --muted: #5b6b7c;
-  --paper: #f4f7fb;
-  --paper-2: #e8eef6;
-  --surface: #ffffff;
-  --line: #d5dee9;
-  --brass: #c47a22;
-  --brass-2: #a86412;
-  --amber: #e8a23a;
-  --good: #1f7a4d;
-  --danger: #b42318;
-  --warn: #b54708;
-  --radius: 10px;
-  --radius-sm: 6px;
-  --shadow: 0 10px 30px rgba(14, 28, 51, 0.08);
-  --serif: "Bricolage Grotesque", Georgia, serif;
-  --sans: "Source Sans 3", "Segoe UI", sans-serif;
-  --header-h: 72px;
+  /* Newsprint and brass — direction sheet */
+  --bg: #e8e8e3;
+  --surface: #dcdcd6;
+  --ink: #181715;
+  --muted: #63625c;
+  --accent: #bfb21a;
+  --accent-ink: #181715;
+  --field: #181715;
+  --field-ink: #e8e8e3;
+
+  /* Compatibility aliases used by admin/portal shells */
+  --navy: #181715;
+  --navy-2: #2a2926;
+  --paper: #e8e8e3;
+  --paper-2: #dcdcd6;
+  --line: #c8c8c0;
+  --brass: #bfb21a;
+  --brass-2: #9a9014;
+  --amber: #bfb21a;
+  --good: #2e7d32;
+  --danger: #c4242a;
+  --warn: #92400e;
+
+  --font-display: "Switzer", sans-serif;
+  --font-text: "Switzer", sans-serif;
+  --serif: var(--font-display);
+  --sans: var(--font-text);
+
+  --step-small: 0.875rem;
+  --step-body: 1.125rem;
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-display: clamp(3rem, 1rem + 9vw, 9rem);
+
+  --margin: clamp(1rem, 2.2vw, 2rem);
+  --gutter: clamp(1rem, 2vw, 2rem);
+  --section: clamp(5rem, 12vw, 13rem);
+  --radius: 0px;
+  --radius-sm: 0px;
+  --shadow: none;
+  --header-h: 64px;
   --max: 1120px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 240ms;
+  --t-reveal: 800ms;
+  --stagger-line: 90ms;
+  --stagger-item: 70ms;
 }

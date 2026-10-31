@@ -1,0 +1,189 @@
+# DIRECTION SHEET — The product performs
+seed 775793638 · drawn 2026-10-31 · sector finance · tone quiet
+Brief: TaxLegalPro: Pakistani tax, corporate registration and compliance desk with client portal
+
+| | |
+| --- | --- |
+| Direction | The product performs |
+| Hero | Controls on the sentence |
+| Type | Switzer |
+| Colour | Newsprint and brass |
+| Sections | how-it-works (One card, four fields) → features (Sentences with switches) → pricing (Plan names, one live figure) → about (Founder's letter) → faq (Question index, one answer) → contact (One field, nothing else) → cta (First step, already open) → footer (A footer of tiles) |
+| Motion | Masked headline |
+| Photographs | the "Water" set, as atmosphere |
+
+This is the direction for this build. Adopt it. Do not blend it with the layout you would have made anyway,
+and do not redraw because it is unfamiliar: unfamiliar is the point. Redraw a slot only when it conflicts
+with a stated brand constraint or needs an asset that does not exist, and say why in your report.
+
+The parts of this sheet were written separately and will disagree in small ways. Settle every disagreement in this order:
+**house rules** (including type no smaller than 13px and body text of 16px or more) → **the direction** (the idea, the composition habits, where the
+one accent goes) → **the type system and the palette** (which face does which job, the five size steps, which colour is the ground and where the
+accent goes) → **the hero blueprint** → **the section blueprints**. Under each blueprint below, "Adjusted for this page" lists where it disagrees.
+In practice: take geometry from blueprints (columns, proportions, what sits where) and take everything else from above them. Map every size a
+blueprint names onto one of your five type steps instead of adding a sixth. Use one button shape, one corner radius and one pair of page margins on
+the whole page, whatever individual blueprints say. If a blueprint names a kind of typeface (a light serif, a heavy grotesk), use the dealt face.
+
+## 1. The idea
+Software is most convincing when it is doing its job in front of you. Instead of describing features, put small, true, working fragments of the product on the page: the actual control, with real content, responding to the pointer. A colour picker's loupe reads the page's own background and prints its value. A list tool lets you tick an item right there. A type-scale plugin sets the page's own headings. Find the one interaction that is the product and make the hero that interaction; then show each further capability as another fragment at real size. No dashboard collage, no browser frame, no screenshots shrunk until unreadable.
+
+Before anything else, write one sentence in your notes: "On this page, <the subject's own material> becomes <the device>."
+Fill the first blank from your inventory of what only this client has (its name and what it means, its street, its numbers, its
+constraint), then put the nearest competitor in the sentence: if it still works, the idea is the category's, not the client's.
+Then name the one live thing the visitor can do on the page (SKILL.md step 4).
+
+## 2. Composition
+Hero: a short plain headline (4–6vw, left-aligned, upper-left third) and one sentence; the rest of the first screen is the main fragment at actual interface size, sitting directly on the page or on one flat stage colour, large enough to read every label. The fragment is built in HTML and works. Below, capabilities are a single-column sequence, each a row of two parts on a 5/7 split: a two-line statement on one side and the relevant fragment on the other, with the fragments varying in size and shape so the column never becomes a zigzag of equal blocks. Fragments are cropped pieces of interface (a menu, a row, a control, a panel edge), not whole windows. One section pins a fragment while three short statements change it.
+
+## 3. Type — Switzer
+One neo-grotesk doing everything: semibold headings pulled tight, small regular text, no capitals and no second voice. Suits software, hardware and studio pages that want to look exact and unshowy.
+```html
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+```
+- Display: **Switzer** — weight 600 · tracking -0.04em · leading 0.95 · sentence case; charcoal rather than pure black
+- Text: **Switzer** — 400 for body, 500 for emphasis · leading 1.5 · tracking -0.005em
+```css
+:root {
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+}
+```
+The marketing type matches the product's interface type so the fragments and the page feel like one thing. Headline modest; interface text at its true size (13–15px) inside fragments.
+The direction decides sizes and how many of them; the type system decides how this face is set. Where the two give different tracking or leading, use the values of the type system: they are tuned to this face.
+The display size itself comes from the hero blueprint below.
+
+## 4. Colour — Newsprint and brass
+```css
+:root {
+  --bg: #e8e8e3;
+  --surface: #dcdcd6;
+  --ink: #181715;
+  --muted: #63625c;
+  --accent: #bfb21a;
+  --accent-ink: #181715;
+  --field-1: #181715;  --field-1-ink: #e8e8e3;
+}
+```
+Warm paper grey with near-black type holds the upper page, then whole sections flip to near-black with paper-grey type; no section is tinted. Brass yellow marks one small detail per screen, such as the button or a single word.
+Neutral ground. The product's own interface colours provide the colour. At most one flat stage colour behind fragments.
+
+## 5. Imagery
+**This subject is software and there are no screenshots, so its pictures are its own interface.** Wherever this sheet says photograph, image or object, build a believable fragment of the product in HTML at real size (real labels, numbers that add up, one item hovered or selected) by the app-screen rules (references/app-screens.md: deal its style once with `node <skill>/scripts/draw.mjs --app --kind <kind> --keep palette,type --out .taste-skill/app`, and build it with assets/app.css and assets/charts.js), put the attribute `data-ui` on its root, and crop or scale it the way the blueprint treats a photograph: a full-bleed close crop, a tile, the fixed half of a split. Where a fragment makes no sense, use a flat colour field with type on it. Never a fake dashboard of grey bars, never a device frame. If the product works on something physical (ships, plants, buildings, a city), one real picture of that world can carry a section: find it with `node /cursor/stores/bc-d68e38c7-6573-4fe3-aa2b-3d457b4419a3/internal/design-taste-frontend/scripts/assets.mjs "<that world>"`, download it with `--get`, credit it on the page, and never let it pass for the product or its customers.
+
+The interface fragments are the main imagery: build them carefully with real labels, real numbers and sensible states (one hovered, one selected). Around them, two or three real pictures of the customer's world (found with scripts/assets.mjs), never stock of people at laptops.
+
+**Floor (the inspector checks it):** at least four real pictures on the page, usually six to twelve; SVG drawings do not count. One moving picture where an honest clip exists: `node <skill>/scripts/assets.mjs --video "<query>"`, used as a muted loop with a poster frame. Whatever this direction says about pictures, it is carried out with real ones.
+
+Optional atmosphere, two at most, from the "Water" set (lakes, rivers, waterfalls and water surfaces). The page does not need them.
+Order of preference for imagery: (1) the project's own photographs and product shots; (2) images you generate, if an image tool is
+available; (3) real pictures of the subject's world found in the open collections (assets.mjs, downloaded and credited on the page);
+(4) drawings of the subject in code; (5) these. They are real photographs (Unsplash licence, served by picsum.photos) of places, light and
+texture. They are atmosphere, never a stand-in for a specific product, dish, person or interface. List the ones you use in your report so
+they can be replaced.
+- `https://picsum.photos/id/293/1600/1000` — Silhouetted pier on a hazy blue lake below faint mountains · mid tone · pale blue, navy · calm area: left · native landscape · photo: Paul E. Harrer
+- `https://picsum.photos/id/469/1600/1000` — Two people paddling a canoe across a misty green lake · mid tone · emerald green, pale grey, teal · calm area: bottom · native landscape · photo: Matthew Clark
+- `https://picsum.photos/id/1038/1600/1000` — Small red boat on a wide expanse of dark blue rippling sea · dark tone · deep blue, slate, red · calm area: bottom · native portrait · photo: Marcelo Quinan
+- `https://picsum.photos/id/124/1600/1000` — Small red boat floating on clear turquoise water, seen from above · mid tone · turquoise, teal, red · calm area: right · native landscape · photo: Anton Sulsky
+The last two path numbers are width and height: request the exact crop you render (`/1200/1500` for a 4:5 portrait, `/2400/1350` for a hero) and
+add `?grayscale` to desaturate. Use at most two. Always set `width`, `height`, `alt` and `loading="lazy"` (not on the hero image).
+Other sets that fit this brief: fog-and-quiet, sky-and-space, architecture — `node draw.mjs --photos <set>` prints one in full; `--photos list` shows all sets. Taking photographs from another set is your call and is not a redraw; keep them to one light and one treatment.
+
+## 6. Hero — Controls on the sentence
+A dark flat ground with no logo bar: a 14px wordmark top-left and the single action as an underlined text link top-right, both 28px in. The headline is a two-line sentence, centred, at clamp(96px, 9vw, 150px), line-height 1.0, occupying the middle 64% of the width and sitting slightly above the midline. It is set in a variable font and it is the demonstration. Three small control chips from the product sit on top of the sentence, each about 300 by 80px with the product's true radius, a text label and a numeric readout: one above the first line near its left end, one overlapping the start of the second line, and a two-state switch at the lower right. They are tilted 2 to 4 degrees and filled solid, one step lighter than the ground. Each one works: dragging the first changes the headline's weight through `font-variation-settings`, the second changes its letter-spacing, the third toggles uppercase. Mark each chip's root with data-ui. One supporting sentence at 17px, max 40ch, is centred 72px under the headline. The bottom third of the screen stays empty.
+
+On a phone: The sentence stays on two lines at 13.5vw, centred at 38% of the height. The three chips shrink to 200 by 60px and move off the letters: one above the sentence and two side by side beneath it, untilted and still live. The supporting sentence follows at 16px. The wordmark stays top-left and the action link top-right.
+Headline: A two-line sentence of three to five words, up to about 11 characters per line at 9vw, that still reads when its weight and spacing change.
+
+Adjusted for this page:
+- It names a kind of typeface: use the dealt faces (display Switzer, text Switzer) and their settings; capitals only where the type system sets them.
+- It sets a sentence large over several lines: jurors read that as a long headline. Either cut it to a two-line headline at display size, or keep it a statement at 36px or less on three lines (24px, four lines on a phone).
+- Its action is a text link: the primary action on the first screen is a real button (filled or solid-bordered, 44px or taller), placed where the blueprint puts the link. A second action may stay a link.
+
+## 7. Sections, in order
+Each is a composition to rebuild with this project's content. Keep the geometry; change the subject. Re-order or drop a
+section when the argument of the page needs it (see references/copy.md), never to fall back to a card grid.
+
+### 1. how-it-works — One card, four fields (strip)
+Four flat colour fields stand side by side across the full viewport, each 25vw wide and 84svh tall, butted together with no gaps; neighbours differ clearly in lightness. The same card from the product (a ticket, an order, a request) appears once in each field at the same height, 38% down, centred, 260px wide at true size, each copy marked data-ui. It is further along every time: bare as it arrives, then with an owner and a due date, then with its checklist half ticked, then closed with its final figure. Along the bottom of each field, 28px in, one clause at clamp(22px, 2vw, 32px) on two lines begins with its order word: 'First it lands here.' 'Then someone takes it.' The heading, two to four words at the same size in the heaviest weight, sits top-left in the first field only. On hover a field's card rises 6px over 150ms.
+On a phone: The fields stack, each full width and 64svh tall, colours meeting edge to edge. In each: the clause at 24px top-left with 20px margins, then the card at true size, left-aligned, 32px below. The heading sits in the first field above its clause, at 24px in the heaviest weight.
+
+### 2. features — Sentences with switches (band)
+Four or five capabilities, each one plain sentence of five to eight words about what the product will do for you, each ending in a working switch. Every sentence is a full-bleed band 20vh tall, butted against the next with no gap. Inside, on the 12-column grid: the sentence at clamp(30px, 3.6vw, 60px) on one line in columns 1–10, vertically centred; in columns 11–12, right-aligned, the product's real toggle, built in em with its root marked data-ui, 1.1em tall so it matches the type. Off, a band is the page ground and its sentence is in the soft ink. On, the band fills with a palette colour, a different one per band, the sentence turns to full ink and a second line at 17px appears beneath stating the consequence in figures. Two bands are on at load. Toggles answer click, Space and Enter. There is no heading; the first sentence does that work.
+On a phone: Bands are at least 132px tall. The sentence is set at 6.4vw on two lines in the left 76% of the width; the toggle sits at the right, vertically centred, with a 44px touch target. When a band is on, the consequence line opens under the sentence at 15px.
+
+Adjusted for this page:
+- It sets a sentence large over several lines: jurors read that as a long headline. Either cut it to a two-line headline at display size, or keep it a statement at 36px or less on three lines (24px, four lines on a phone).
+
+### 3. pricing — Plan names, one live figure (index)
+Plans are a list of names; the price shown belongs to whichever name is selected. Columns 1–6 hold the plan names stacked at about 5vw, leading 1.1, each a `<button>`; the selected one is in the full ink, the others in the softer ink, and the selected name carries a solid dot 0.3em across at its left. Columns 8–12 hold one stage that stays in place while its contents change: the selected plan's price at about 9vw at the top, the period beside it at 18px, a paragraph of three or four lines at 18px saying what that plan includes, and one rectangular button whose label names the plan. Changing plan swaps the stage contents with a 200ms crossfade; the figure's position never moves. Selection follows click and keyboard focus. The middle plan is selected on load. There is no heading: the names are the heading.
+On a phone: Plan names stack at 10vw, each on its own line. Tapping one opens its stage directly beneath that name (price at 20vw, paragraph at 17px, full-width button) and closes the others, like a large accordion without lines. The middle plan starts open.
+
+### 4. about — Founder's letter (stack)
+A letter in a centred column 520px wide with at least 160px of empty ground above and below. At the column's top-left, a round portrait 44px across. 28px below it, four or five short paragraphs at 16–17px with leading 1.55, each two to four lines and separated by one blank line, written in the first person. No heading. The sign-off is the writer's name at 22px in the text face's italic, with the role at 14px in the soft ink beneath it. One phrase in the letter may carry a flat marker-colour background. Variant for a page built as an object: the letter sits on a filled paper-colour sheet 640px wide with 60px padding on a contrasting ground, square corners, its bottom edge cut into small scallops with `clip-path`, and below a row of 5px round dots a tear-off strip 72px tall that carries the email address.
+On a phone: The column takes the full width with 24px margins; text at 16px, portrait 40px. In the sheet variant the sheet spans edge to edge with 24px padding and keeps its shaped bottom edge; the tear-off strip stacks the email above a full-width button.
+
+Adjusted for this page:
+- It names a kind of typeface: use the dealt faces (display Switzer, text Switzer) and their settings; capitals only where the type system sets them.
+
+### 5. faq — Question index, one answer (index)
+Questions on the left, one answer on the right, and the answer changes as the reader moves through the questions. Columns 1–5 list all questions at one size, 18px, with 18px between them; each is preceded by a solid dot 8px across, in the softer ink when idle and in the accent colour when selected. The selected question is in the full ink, the rest in the softer ink. Columns 7–12 hold the answer pane, `position: sticky; top: 120px`: the selected answer at 24–28px in the regular weight, leading 1.3, measure about 30ch, so the answer, not the question, is the large type. Selection follows hover, click and keyboard focus; the pane crossfades in 150ms. The first question is selected on load. A two-word heading in the softer ink is the first line of the list, at the same 18px.
+On a phone: The list runs full width at 18px. Tapping a question colours its dot and opens its answer directly beneath at 19px, indented to line up with the question text; other answers close. There is no pane and no sticky element.
+
+### 6. contact — One field, nothing else (stack)
+The whole section is one prompt and one field in a column 520px wide, on the page's text column line or centred, with 200px of empty ground above and 160px below. The prompt is two lines at one size, 24–28px in medium weight: the first line in the soft ink, the second in full ink. 28px below, a single input 520px wide and 64px tall with a 12px radius, filled with the lightest tone on the page so it is the only bright surface in view; no outline at rest and a 2px inner ring in the accent on focus. Inside the right end of the field, 8px from its edge, a round submit button 44px across with an arrow and an accessible name. 16px below the field, one line at 13px says what happens next. 72px lower, three label and value rows at 14px: email, phone, address.
+On a phone: The column fills the width with 20px margins. Prompt at 22px. The field stays one row, 60px tall, with the arrow button inside its right end. The three label and value rows stack with the label above each value and 20px between them.
+
+Adjusted for this page:
+- It names its own corners: use the one radius of this page (square unless the direction says otherwise) and one button shape.
+
+### 7. cta — First step, already open (split)
+The page ends with the product's first screen already open. A full-bleed field in the accent colour, 90svh tall. Right, in columns 7–11, vertically centred: the product's own create dialog at true size, 440px wide, root marked data-ui, with its real title ('Name your workspace'), one text field holding an editable, believable example, one two-option segmented choice and its primary button. Inside the fragment the product's conventions apply, including the shadow its dialog normally casts. The field accepts typing, the choice switches, and the primary button is the page's only action: it carries the typed value into sign-up. Left, in columns 1–5, anchored to the bottom with 40px margins: the closing line, two to four words at clamp(56px, 7vw, 112px), leading 0.92, on two lines, and under it one sentence at 17px saying what happens after the button. The upper-left stays empty.
+On a phone: The closing line leads at 13vw on two lines, top-left, with its sentence beneath at 16px. The dialog follows at full width inside 16px margins, at true size, its primary button 52px tall and full width. The field is at least 84svh; the dialog sits in its lower half.
+
+Adjusted for this page:
+- It mentions a shadow: only on something open above the page (a menu, a dialog), never on a resting element.
+
+### 8. footer — A footer of tiles (grid)
+The footer is the last two rows of a board: filled tiles with 8px gaps and 8–12px outer margins, every cell used. Upper row, each tile 220px tall: a statement tile in columns 1–4 with one sentence at 24px top-left and the legal text at 12px bottom-left; a navigation tile in columns 5–7 with a plain list at 16px; a tile in columns 8–9 giving the city and local time as text; an email tile in columns 10–12 with the address at 20px as a link, bottom-left. Lower row, 320px tall: a tile in the ink colour spanning columns 1–8 with the wordmark set large (about 9vw) and centred, and a tile in the accent colour in columns 9–12 with a two-to-four-word invitation top-left at 28px and an arrow, drawn as inline SVG with 4px strokes, in its bottom-right corner; the whole accent tile is a link.
+On a phone: Two columns of tiles with 6px gaps: the wordmark tile full width first at 160px tall, the accent tile full width next, then navigation and email side by side, then time and statement. Every tile keeps 20px padding and top-left text.
+
+Adjusted for this page:
+- It sets text at 12px: use your small step (13px or more) instead.
+
+## 8. Motion — Masked headline
+On load, each line of the headline rises from behind its own baseline, about 900ms with a strong ease-out, the second line 110ms after the first; the supporting sentence and the action then fade up together. Nothing else on the page performs. Because headlines are two lines at most, you author the line breaks and wrap each line yourself. Recipe: 'Masked line reveal' in references/motion.md.
+This is the signature move, the one loud moment. Around it the page still needs the rest of the motion layer (SKILL.md step 9): an entrance for the parts of every section, feedback on every control, and one moving picture. The inspector fails a page that barely moves. Recipes: references/motion.md.
+
+## 10. Where the richness comes from
+Fidelity. A fragment with believable content and a real hover state is more interesting than any illustration. Spend the effort there.
+
+## 11. How this direction goes wrong
+A fake interface made of grey bars and circles is the worst outcome; if you cannot build a believable fragment, change direction. Mark each fragment's root element with the attribute data-ui: inside it the product's own conventions apply (1px control borders, small radii, a shadow on its open menu) and the inspector leaves them alone; outside it the house rules hold as usual. data-ui is for cropped fragments only, never for a page wrapper. Do not put the fragment in a browser or laptop frame.
+
+## 12. Real references
+Studied sites that work this way. Take the principle, never the specifics: no names, copy, images or signature assets of theirs.
+- **Uni** (One Page Love, studied score 7.2) `opl-uni`
+  Idea: The product lives in the laptop notch, so the page's navigation is a black notch and the hero is a laptop outline whose notch opens into the app.
+  Hero: White page with the hero as a rounded-corner panel inset 24px on all sides, filled with a grainy pastel gradient (pink-peach centre, sky blue down the right edge, orange lower-left). A black pill 300×44px sits top-centre like a laptop notch, holding only the app icon; it is the entire nav. Centred below: a hand-scrawled caps eyebrow, a two-line 48px (3.3vw) headline, two white pill download buttons side by side, one line of tiny grey reassurance. The bottom 40% is a thick black outline of a laptop screen, 960px wide, cropped by the fold, its notch expanded into a dark input bar playing the demo.
+  Worth taking: Shape the navigation like the product's own hardware habitat (here a black notch pill) so the nav itself demonstrates the product.
+- **Shelf** (One Page Love, studied score 7.1) `opl-shelf`
+  Idea: Saves scattered across a dozen places are funnelled into one searchable shelf, shown literally by tumbling source chips and a panel edge that narrows to a point.
+  Hero: An off-white panel sits inside a 12px warm-grey page frame. A compact floating nav about 880px wide: logo left, three links and a lime waitlist button right. Centred stack: a small grey pill badge with a sparkle icon, then a two-line headline in General Sans Semibold at about 5.8vw with tight tracking, one word of which sits on a lime rounded-rectangle highlight; a two-line grey subhead; an email field with its button nested inside one rounded outline, 460px wide. From 75% down, the top of a bordered app window rises, and a larger search bar holding a half-typed query overlaps it with a soft shadow.
+  Worth taking: Shape a section's bottom edge into a chevron and run a hairline from its tip to the next heading, turning 'many into one' into layout.
+- **Sharplink** (Awwwards Site of the Day, studied score 7.6) `aww-sharplink`
+  Idea: A crypto treasury presented as precision hardware: chrome machined parts and glass capsules rendered in 3D on deep blue, overlaid with dashed machine-vision tracking boxes.
+  Hero: Full-bleed video of exploded brushed-metal components floating on a navy-to-cobalt gradient, covered by a web of thin white dashed lines and small square tracking markers. Logo top-left on a 2% margin; top-right a segmented strip of five dark rectangular tabs in narrow uppercase plus an arrow square. The headline is top-left, two lines at 6.1vw in regular weight with -0.03em tracking, starting 18% down. Under it two stacked rectangular buttons: white with a blue arrow square attached, then a translucent dark one. Bottom row: a stock-exchange badge at left, a three-line lead paragraph at about 1.3vw starting 26% across, and bottom-right a translucent dark news card about 30% wide.
+  Worth taking: Overlay a 3D render with thin dashed lines and tiny square markers linking its parts, as if a vision system were tracking the object.
+Full notes on any of them: `node draw.mjs --site <id>`.
+
+## Always
+Headlines two lines or fewer at every width. No eyebrow labels, no monospace, no 01/02/03, no thin rules, no gradients, no shadows at rest,
+no cream-and-terracotta, no violet. The frame: one h1 on the first screen that says what this is, equal outer margins, no
+section huddled on one side with the other half empty, no blank stretch over half a screen, a heading on every section.
+`inspect.mjs` measures all of it.
+
+Saved to /workspace/.taste-skill/direction.json · reprint with `node draw.mjs --show`

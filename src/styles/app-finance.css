@@ -1,0 +1,313 @@
+/* Admin finance — Achromatic ledger shell, Newsprint+brass + Switzer kept from public */
+
+.ws-frame {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  font-family: var(--font-text);
+}
+
+.ws-shell {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  min-height: 0;
+}
+
+.ws-shell.finance {
+  --ws-ground: var(--bg);
+  --ws-surface: #f4f4ef;
+  --ws-card: #ffffff;
+  --ws-border: #e0e0da;
+  --ws-rule: #ebebe6;
+  --ws-control: #d4d4ce;
+  --ws-ink: var(--ink);
+  --ws-muted: var(--muted);
+  --ws-accent: var(--ink);
+  --ws-chart: #1d5fbf;
+  --ws-positive: #2e7d32;
+  --ws-negative: #c4242a;
+  --ws-side: var(--bg);
+  --ws-line: #e0e0da;
+  --ws-card: #ffffff;
+  --radius-card: 8px;
+  --radius-control: 6px;
+}
+
+.ws-shell.finance .ws-sidebar {
+  background: var(--ws-ground);
+  color: var(--ws-ink);
+  border-right: 1px solid var(--ws-border);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.ws-shell.finance .ws-brand-block {
+  padding: 1.15rem 1rem;
+  border-bottom: 0;
+}
+
+.ws-shell.finance .ws-brand {
+  color: var(--ws-ink);
+  text-decoration: none;
+  display: block;
+}
+
+.ws-shell.finance .ws-brand strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.03em;
+}
+
+.ws-shell.finance .ws-brand small {
+  color: var(--ws-muted);
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.ws-shell.finance .brand-mark {
+  display: none;
+}
+
+.ws-shell.finance .ws-group-title {
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--ws-muted);
+  margin: 1.25rem 0.85rem 0.35rem;
+  font-weight: 500;
+}
+
+.ws-shell.finance .ws-group a,
+.ws-shell.finance .ws-nav > a {
+  color: var(--ws-muted);
+  border-radius: 8px;
+  margin-inline: 8px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.ws-shell.finance .ws-group a:hover,
+.ws-shell.finance .ws-nav > a:hover,
+.ws-shell.finance .ws-group a.active,
+.ws-shell.finance .ws-nav > a.active {
+  background: #e9e9e3;
+  color: var(--ws-ink);
+}
+
+.ws-shell.finance .ws-user {
+  border-top: 1px solid var(--ws-border);
+  color: var(--ws-ink);
+}
+
+.ws-shell.finance .ws-user strong {
+  color: var(--ws-ink);
+}
+
+.ws-shell.finance .ws-user span {
+  color: var(--ws-muted);
+}
+
+.ws-shell.finance .ws-avatar {
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.ws-shell.finance .ws-main {
+  background: var(--ws-ground);
+}
+
+.ws-shell.finance .ws-top {
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  padding: 32px 32px 8px;
+}
+
+.ws-shell.finance .ws-top h1 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ws-ink);
+}
+
+.ws-shell.finance .ws-top .sub {
+  color: var(--ws-muted);
+  font-size: 14px;
+}
+
+.ws-shell.finance .ws-search {
+  border: 1px solid var(--ws-border);
+  border-radius: var(--radius-control);
+  background: #fff;
+  height: 36px;
+}
+
+.ws-shell.finance .ws-pill {
+  background: #eeeeee;
+  color: var(--ws-ink);
+  border-radius: var(--radius-control);
+  font-weight: 500;
+}
+
+.ws-shell.finance .ws-pill .dot {
+  background: var(--ws-positive);
+}
+
+.ws-shell.finance .ws-content {
+  padding: 12px 32px 48px;
+}
+
+.ws-shell.finance .kpi-grid {
+  gap: 12px;
+}
+
+.ws-shell.finance .kpi {
+  background: var(--ws-card);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  padding: 16px 18px;
+}
+
+.ws-shell.finance .kpi:hover {
+  transform: none;
+}
+
+.ws-shell.finance .kpi span {
+  font-size: 12px;
+  color: var(--ws-muted);
+  font-weight: 500;
+}
+
+.ws-shell.finance .kpi strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ws-ink);
+  margin-top: 0.35rem;
+  display: block;
+}
+
+.ws-shell.finance .kpi .hint {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.ws-shell.finance .kpi .hint.up {
+  color: var(--ws-positive);
+}
+
+.ws-shell.finance .kpi .hint.warn {
+  color: var(--warn);
+}
+
+.ws-shell.finance .fin-panel {
+  background: var(--ws-card);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  padding: 20px 22px;
+}
+
+.ws-shell.finance .fin-panel h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.ws-shell.finance .fin-grid-2 {
+  gap: 12px;
+}
+
+.ws-shell.finance .chart-placeholder {
+  min-height: 120px;
+  border-radius: var(--radius-control);
+  background: #f8f8f5;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--ws-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.ws-shell.finance .chart-awaiting {
+  border-left: 3px solid var(--ws-chart);
+  justify-content: start;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.ws-shell.finance .fin-panel {
+  align-self: start;
+}
+
+.ws-shell.finance .chart-bar {
+  display: none;
+}
+
+.ws-shell.finance .btn-teal,
+.ws-shell.finance .btn-primary {
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: var(--bg) !important;
+  border-radius: var(--radius-control) !important;
+}
+
+.ws-shell.finance .btn-ghost {
+  border-radius: var(--radius-control) !important;
+  border-color: var(--ws-border) !important;
+}
+
+.ws-shell.finance table.data thead th {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ws-muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ws-shell.finance table.data tbody tr {
+  background: transparent;
+}
+
+.ws-shell.finance table.data tbody tr:nth-child(even) {
+  background: transparent;
+}
+
+.ws-shell.finance table.data th,
+.ws-shell.finance table.data td {
+  border-bottom: 1px solid var(--ws-rule);
+  padding: 0.75rem 0.5rem;
+  font-size: 14px;
+}
+
+.ws-shell.finance .empty-note {
+  color: var(--ws-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 960px) {
+  .ws-shell.finance {
+    grid-template-columns: 1fr;
+  }
+
+  .ws-shell.finance .ws-sidebar {
+    position: relative;
+    height: auto;
+  }
+}

@@ -133,40 +133,36 @@ export function FinanceDashboard() {
       <div className="fin-grid-2">
         <div className="fin-panel">
           <div className="row" style={{ justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-            <h3 style={{ margin: 0 }}>Cash movement structure</h3>
-            <Badge tone="brass">Layout only</Badge>
+            <h3 style={{ margin: 0 }}>Cash movement</h3>
+            <span className="muted" style={{ fontSize: 14 }}>
+              Waiting on journals
+            </span>
           </div>
           <p className="empty-note" style={{ marginTop: 0 }}>
-            Chart scaffold mirrors the finance reference. Bars are decorative until monthly cash-flow
-            queries are wired from posted journals.
+            Cash movement by month appears here once posted journals are aggregated. Until then the
+            panel stays empty. No invented bars.
           </p>
-          <div className="chart-placeholder" aria-hidden>
-            {[40, 55, 35, 70, 48, 62].map((h, i) => (
-              <div key={i} className={`chart-bar ${i % 2 ? 'ghost' : ''}`} style={{ height: `${h}%` }} />
-            ))}
-          </div>
+          <div className="chart-placeholder chart-awaiting">No monthly cash series yet</div>
         </div>
         <div className="fin-panel">
-          <h3>Revenue vs expenses (structure)</h3>
+          <h3>Revenue vs expenses</h3>
           <p className="empty-note" style={{ marginTop: 0 }}>
-            Labeled placeholders — no invented MTD revenue.
+            Needs a posted P&amp;L from the ledger. Figures stay as a dash until then.
           </p>
           <div className="legend-row">
-            <span className="swatch" style={{ background: '#14b8a6' }} /> Revenue{' '}
+            <span className="swatch" style={{ background: '#1d5fbf' }} /> Revenue{' '}
             <strong style={{ marginLeft: 'auto' }}>—</strong>
           </div>
           <div className="legend-row">
-            <span className="swatch" style={{ background: '#60a5fa' }} /> Expenses{' '}
+            <span className="swatch" style={{ background: '#8a8a8a' }} /> Expenses{' '}
             <strong style={{ marginLeft: 'auto' }}>—</strong>
           </div>
           <div className="legend-row">
-            <span className="swatch" style={{ background: '#22c55e' }} /> Net{' '}
+            <span className="swatch" style={{ background: '#141414' }} /> Net{' '}
             <strong style={{ marginLeft: 'auto' }}>—</strong>
           </div>
-          <div className="chart-placeholder" style={{ minHeight: 120, marginTop: '0.75rem' }} aria-hidden>
-            <div className="chart-bar" style={{ height: '72%' }} />
-            <div className="chart-bar ghost" style={{ height: '58%' }} />
-            <div className="chart-bar" style={{ height: '28%' }} />
+          <div className="chart-placeholder" style={{ minHeight: 120, marginTop: '0.75rem' }}>
+            No posted P&amp;L series yet
           </div>
         </div>
       </div>

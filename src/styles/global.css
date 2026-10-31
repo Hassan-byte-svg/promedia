@@ -1,50 +1,82 @@
+@import "./taste-base.css";
 @import "./tokens.css";
+@import "./taste-public.css";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("https://cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2")
+      format("woff2"),
+    url("/fonts/switzer-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
-
-html {
-  scroll-behavior: smooth;
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("https://cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2")
+      format("woff2"),
+    url("/fonts/switzer-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("https://cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2")
+      format("woff2"),
+    url("/fonts/switzer-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--sans);
+  font-family: "Switzer", var(--font-text), sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
   color: var(--ink);
-  background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(196, 122, 34, 0.12), transparent 55%),
-    radial-gradient(900px 420px at 90% 0%, rgba(14, 28, 51, 0.1), transparent 50%),
-    linear-gradient(180deg, #f8fafc 0%, var(--paper) 40%, #eef3f9 100%);
+  background: var(--bg);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--serif);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--navy);
-  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
 }
 
 p {
-  margin: 0 0 1rem;
-  color: var(--muted);
+  margin: 0;
+  color: var(--ink);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+p + p {
+  margin-top: 0.9em;
 }
 
 a {
-  color: var(--navy);
-  text-decoration-thickness: 1px;
+  color: inherit;
   text-underline-offset: 3px;
 }
 
-img {
+img,
+video {
   max-width: 100%;
   display: block;
 }
@@ -54,6 +86,7 @@ input,
 select,
 textarea {
   font: inherit;
+  color: inherit;
 }
 
 #root {
@@ -61,7 +94,7 @@ textarea {
 }
 
 .container {
-  width: min(100% - 2rem, var(--max));
+  width: min(100% - (var(--margin) * 2), 1440px);
   margin-inline: auto;
 }
 
@@ -93,57 +126,80 @@ textarea {
   color: var(--muted);
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--brass);
-  margin-bottom: 0.75rem;
-}
-
 .section {
-  padding: 4.5rem 0;
+  padding-block: calc(var(--section) / 2);
 }
 
 .section-head {
-  max-width: 36rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  max-width: 40rem;
 }
 
+.section-head h1,
 .section-head h2 {
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-size: var(--step-head);
+  margin-bottom: 0.75rem;
 }
 
-.grid-2 {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.section-head p {
+  color: var(--muted);
+  font-size: var(--step-lead);
+  line-height: 1.35;
 }
 
-.grid-3 {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+/* Suppress stock eyebrow / badge patterns on public */
+.eyebrow {
+  display: none;
 }
 
-.grid-4 {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.table-wrap {
+  overflow-x: auto;
 }
 
-@media (max-width: 900px) {
-  .grid-3,
-  .grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step-body);
 }
 
-@media (max-width: 640px) {
-  .grid-2,
-  .grid-3,
-  .grid-4 {
-    grid-template-columns: 1fr;
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 1rem 0.75rem;
+  border-bottom: 0;
+  background: transparent;
+}
+
+table.data thead th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: var(--step-small);
+}
+
+table.data tbody tr {
+  background: var(--surface);
+}
+
+table.data tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+
+table.data a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+table.data a:hover {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

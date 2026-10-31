@@ -3,6 +3,7 @@ import { useAuth } from '@/lib/auth'
 import { Button } from '@/components/ui/Button'
 import { SetupBanner } from './SetupBanner'
 import './workspace.css'
+import '@/styles/app-finance.css'
 
 export type NavItem = { to: string; label: string; icon?: string; end?: boolean; external?: boolean }
 export type NavGroup = { title: string; items: NavItem[] }

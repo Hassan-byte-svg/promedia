@@ -3,12 +3,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid transparent;
   font-weight: 600;
   cursor: pointer;
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
   text-decoration: none;
+  filter: none;
 }
 
 .btn:active {
@@ -135,7 +136,7 @@
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  /* no rest shadow */
   padding: 1.15rem 1.25rem;
 }
 
